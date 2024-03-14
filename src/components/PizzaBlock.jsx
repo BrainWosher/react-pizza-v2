@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const PizzaBlock = ({title, price}) => {
+  const [pizzaCount, setPizzaCount] = useState(0);
   return (
     <div class="pizza-block">
       <img
@@ -22,7 +23,7 @@ const PizzaBlock = ({title, price}) => {
       </div>
       <div class="pizza-block__bottom">
         <div class="pizza-block__price">от {price} ₽</div>
-        <div class="button button--outline button--add">
+        <button class="button button--outline button--add" onClick={() => setPizzaCount(pizzaCount + 1)}>
           <svg
             width="12"
             height="12"
@@ -36,8 +37,8 @@ const PizzaBlock = ({title, price}) => {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          {pizzaCount >= 1 ? <i>{pizzaCount}</i> : ''}
+        </button>
       </div>
     </div>
   );
