@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 const PizzaBlock = ({title, price}) => {
-  const [pizzaCount, setPizzaCount] = useState(0);
+  const [pizzaCount, setPizzaCount] = React.useState(0);
   return (
     <div className="pizza-block">
       <img
