@@ -30,16 +30,12 @@ const categories = [
 const Categories = () => {
   const [activeIndex, setActiveIndex] = React.useState(0);
 
-  const onSetActiveIndex = (index) => {
-    setActiveIndex(index);
-  };
-
   return (
     <div className="categories">
       <ul>
         {categories.map((it, index) => (
           <li
-            onClick={() => onSetActiveIndex(index)}
+            onClick={() => setActiveIndex(index)}
             className={activeIndex === index ? 'active' : ''}
           >
             {it.value}
