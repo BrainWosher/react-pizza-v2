@@ -4,23 +4,23 @@ import Header from './components/Header';
 import Categories from './components/Categories';
 import Sort from './components/Sort';
 import PizzaBlock from './components/PizzaBlock';
-import pizzas from './assets/pizzas.json';
 
 function App() {
-  // const [pizzas, setPizzas] = React.useState(null);
-  //
-  // React.useEffect(() => {
-  //   fetch(`https://659657ee6bb4ec36ca026645.mockapi.io/pizzas/`)
-  //     .then(res => res.json())
-  //     .then(json => {
-  //       setPizzas(json);
-  //     })
-  //     .catch(err => {
-  //       console.warn(err);
-  //       alert('Ошибка при получении данных');
-  //     })
-  //     .finally(console.log('Данные загрузились'));
-  // }, []);
+  const [pizzas, setPizzas] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch(`https://659657ee6bb4ec36ca026645.mockapi.io/pizzas/`)
+      .then((res) => res.json())
+      .then((json) => {
+        setPizzas(json);
+      })
+      .catch((err) => {
+        console.warn(err);
+        alert('Ошибка при получении данных');
+      })
+      .finally(console.log('Данные загрузились'));
+  }, []);
+
   return (
     <div className="wrapper">
       <Header />
