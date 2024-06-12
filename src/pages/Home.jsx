@@ -19,12 +19,12 @@ const Home = () => {
       .catch((err) => {
         console.warn(err);
         alert('Ошибка при получении данных');
-      })
-      .finally(console.log('Данные загрузились'));
+      });
+    window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <div className="content__top">
         <Categories />
         <Sort />
