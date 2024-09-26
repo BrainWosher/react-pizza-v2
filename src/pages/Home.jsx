@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -30,17 +31,13 @@ const Home = () => {
     const sortBy = sortType.replace('-', '');
     const search = searchValue ? `&search=${searchValue}` : '';
 
-    fetch(
-      `https://659657ee6bb4ec36ca026645.mockapi.io/pizzas?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`,
-    )
-      .then((res) => res.json())
-      .then((arr) => {
-        setItems(arr);
+    axios
+      .get(
+        `https://659657ee6bb4ec36ca026645.mockapi.io/pizzas?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`,
+      )
+      .then((res) => {
+        setItems(res.data);
         setIsLoading(false);
-      })
-      .catch((err) => {
-        console.warn(err);
-        alert('Ошибка при получении данных');
       });
     window.scrollTo(0, 0);
   }, [categoryId, sortType, searchValue, currentPage]);
