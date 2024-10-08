@@ -15,11 +15,10 @@ const Search = () => {
   };
 
   const updateSearchValue = React.useCallback(
-    () =>
-      debounce((str) => {
-        setSearchValue(str);
-      }, 250),
-    [setSearchValue],
+    debounce((str) => {
+      setSearchValue(str);
+    }, 250),
+    [],
   );
 
   const onChangeInput = (e) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import qs from 'qs';
-import { useNavigate } from 'react-router-dom';
+// import qs from 'qs';
+// import { useNavigate } from 'react-router-dom';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
 
 const Home = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
   const sortType = sort.sortProperty;
@@ -22,7 +22,6 @@ const Home = () => {
   const [isLoading, setIsLoading] = React.useState(true);
 
   const onChangeCategory = (id) => {
-    console.log(id);
     dispatch(setCategoryId(id));
   };
 
@@ -48,14 +47,14 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, [categoryId, sortType, searchValue, currentPage]);
 
-  React.useEffect(() => {
-    const queryString = qs.stringify({
-      sortProperty: sort.sortProperty,
-      categoryId,
-      currentPage,
-    });
-    // navigate(`${queryString}`);
-  }, [categoryId, sort.sortProperty, currentPage]);
+  // React.useEffect(() => {
+  //   const queryString = qs.stringify({
+  //     sortProperty: sort.sortProperty,
+  //     categoryId,
+  //     currentPage,
+  //   });
+  //   // navigate(`${queryString}`);
+  // }, [categoryId, sort.sortProperty, currentPage]);
 
   const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
 
