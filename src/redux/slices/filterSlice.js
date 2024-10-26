@@ -19,6 +19,17 @@ const filterSlice = createSlice({
     setCurrentPage(state, action) {
       state.currentPage = action.payload;
     },
+    // setFilters(state, action) {
+    //   if (Object.keys(action.payload).length) {
+    //     state.currentPage = Number(action.payload.currentPage);
+    //     state.categoryId = Number(action.payload.categoryId);
+    //     state.sort = action.payload.sort;
+    //   } else {
+    //     state.categoryId = 0;
+    //     state.currentPage = 1;
+    //     state.sort = { name: 'популярности', sortProperty: 'rating' };
+    //   }
+    // },
   },
 });
 
