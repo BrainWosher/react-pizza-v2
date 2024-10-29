@@ -19,20 +19,14 @@ const filterSlice = createSlice({
     setCurrentPage(state, action) {
       state.currentPage = action.payload;
     },
-    // setFilters(state, action) {
-    //   if (Object.keys(action.payload).length) {
-    //     state.currentPage = Number(action.payload.currentPage);
-    //     state.categoryId = Number(action.payload.categoryId);
-    //     state.sort = action.payload.sort;
-    //   } else {
-    //     state.categoryId = 0;
-    //     state.currentPage = 1;
-    //     state.sort = { name: 'популярности', sortProperty: 'rating' };
-    //   }
-    // },
+    setFilters(state, action) {
+      state.sort = action.payload.sort;
+      state.currentPage = Number(action.payload.currentPage);
+      state.categoryId = Number(action.payload.categoryId);
+    },
   },
 });
 
-export const { setCategoryId, setSort, setCurrentPage } = filterSlice.actions;
+export const { setCategoryId, setSort, setCurrentPage, setFilters } = filterSlice.actions;
 
 export default filterSlice.reducer;
