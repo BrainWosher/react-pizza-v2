@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -85,9 +84,7 @@ const Home = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
 
-    // if (!isSearch.current) {
     getPizzas();
-    // }
     isSearch.current = false;
   }, [categoryId, sortType, searchValue, currentPage]);
 
@@ -102,7 +99,15 @@ const Home = () => {
         <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">{status === 'loading' ? skeletons : pizzas}</div>
+      {status === 'error' ? (
+        <div className="content__error-info">
+          <h2>Произошла ошибка 😕</h2>
+          <p>К сожалению, не удалось получить питцы. Попробуйте повторить попытку позже.</p>
+        </div>
+      ) : (
+        <div className="content__items">{status === 'loading' ? skeletons : pizzas}</div>
+      )}
+
       <Pagination currentPage={currentPage} onChangePage={onChangePageNumber} />
     </div>
   );
