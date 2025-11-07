@@ -2,8 +2,14 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const FullPizza = () => {
-  const [pizza, setPizza] = React.useState();
+interface PizzaState {
+  imageUrl: string;
+  title: string;
+  price: number;
+}
+
+const FullPizza: React.FC = () => {
+  const [pizza, setPizza] = React.useState<PizzaState>();
   const { id } = useParams();
 
   React.useEffect(() => {
@@ -21,7 +27,7 @@ const FullPizza = () => {
   }, []);
 
   if (!pizza) {
-    return 'Загрузка...';
+    return <>Загрузка...</>;
   }
 
   return (
