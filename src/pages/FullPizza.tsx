@@ -2,11 +2,11 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-interface PizzaState {
+type PizzaState = {
   imageUrl: string;
   title: string;
   price: number;
-}
+};
 
 const FullPizza: React.FC = () => {
   const [pizza, setPizza] = React.useState<PizzaState>();

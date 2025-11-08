@@ -5,11 +5,21 @@ import CartItem from '../components/CartItem';
 import { cartSelector, clearItems } from '../redux/slices/cartSlice';
 import EmptyCart from '../components/EmptyCart';
 
-const Cart = () => {
+type ItemProps = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  size: number;
+  count: number;
+  imageUrl: string;
+};
+
+const Cart: React.FC = () => {
   const dispatch = useDispatch();
   const { totalPrice, items } = useSelector(cartSelector);
 
-  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+  const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
 
   const onClearCart = () => {
     if (window.confirm('Хотите очистить корзину?')) {
@@ -23,9 +33,9 @@ const Cart = () => {
 
   return (
     <div className="container caontainer--cart">
-      <div class="cart">
-        <div class="cart__top">
-          <h2 class="content__title">
+      <div className="cart">
+        <div className="cart__top">
+          <h2 className="content__title">
             <svg
               width="18"
               height="18"
@@ -57,7 +67,7 @@ const Cart = () => {
             </svg>
             Корзина
           </h2>
-          <div onClick={onClearCart} class="cart__clear">
+          <div onClick={onClearCart} className="cart__clear">
             <svg
               width="20"
               height="20"
@@ -97,13 +107,13 @@ const Cart = () => {
             <span>Очистить корзину</span>
           </div>
         </div>
-        <div class="content__items">
-          {items.map((it) => (
+        <div className="content__items">
+          {items.map((it: ItemProps) => (
             <CartItem key={it.id} {...it} />
           ))}
         </div>
-        <div class="cart__bottom">
-          <div class="cart__bottom-details">
+        <div className="cart__bottom">
+          <div className="cart__bottom-details">
             <span>
               {' '}
               Всего пицц: <b>{totalCount} шт.</b>{' '}
@@ -113,8 +123,8 @@ const Cart = () => {
               Сумма заказа: <b>{totalPrice} ₽</b>{' '}
             </span>
           </div>
-          <div class="cart__bottom-buttons">
-            <Link to="/" class="button button--outline button--add go-back-btn">
+          <div className="cart__bottom-buttons">
+            <Link to="/" className="button button--outline button--add go-back-btn">
               <svg
                 width="8"
                 height="14"
@@ -133,7 +143,7 @@ const Cart = () => {
 
               <span>Вернуться назад</span>
             </Link>
-            <div class="button pay-btn">
+            <div className="button pay-btn">
               <span>Оплатить сейчас</span>
             </div>
           </div>
