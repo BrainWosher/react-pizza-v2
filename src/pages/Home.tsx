@@ -27,7 +27,7 @@ const Home: React.FC = () => {
 
   const sortType = sort.sortProperty;
 
-  const onChangeCategory = (id: string) => {
+  const onChangeCategory = (id: number) => {
     dispatch(setCategoryId(id));
   };
 
