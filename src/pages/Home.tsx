@@ -1,7 +1,7 @@
 import React from 'react';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import Categories from '../components/Categories';
 import Sort, { sortList } from '../components/Sort';
@@ -15,10 +15,11 @@ import {
   setFilters,
 } from '../redux/slices/filterSlice';
 import { fetchPizzas, pizzaSelector } from '../redux/slices/pizzaSlice';
+import { useAppDispatch } from '../redux/store';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
@@ -42,47 +43,46 @@ const Home: React.FC = () => {
     const search = searchValue ? `&search=${searchValue}` : '';
 
     dispatch(
-      // @ts-ignore
       fetchPizzas({
         category,
         order,
         sortBy,
         search,
-        currentPage,
+        currentPage: String(currentPage),
       }),
     );
   };
 
-  //Не пихать парметры в адресную строку на первом рендере
-  React.useEffect(() => {
-    if (isMounted.current) {
-      const queryString = qs.stringify({
-        sortProperty: sort.sortProperty,
-        categoryId,
-        currentPage,
-      });
+  // //Не пихать парметры в адресную строку на первом рендере
+  // React.useEffect(() => {
+  //   if (isMounted.current) {
+  //     const queryString = qs.stringify({
+  //       sortProperty: sort.sortProperty,
+  //       categoryId,
+  //       currentPage,
+  //     });
 
-      navigate(`?${queryString}`);
-    }
-    isMounted.current = true;
-  }, [categoryId, sort.sortProperty, currentPage, navigate]);
+  //     navigate(`?${queryString}`);
+  //   }
+  //   isMounted.current = true;
+  // }, [categoryId, sort.sortProperty, currentPage, navigate]);
 
-  //Если был первый рендер, проверить url-параметры и сохранить в редакс
-  React.useEffect(() => {
-    if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
+  // //Если был первый рендер, проверить url-параметры и сохранить в редакс
+  // React.useEffect(() => {
+  //   if (window.location.search) {
+  //     const params = qs.parse(window.location.search.substring(1));
 
-      const sort = sortList.find((obj) => obj.sortProperty === params.sortProperty);
+  //     const sort = sortList.find((obj) => obj.sortProperty === params.sortProperty);
 
-      dispatch(
-        setFilters({
-          ...params,
-          sort,
-        }),
-      );
-      isSearch.current = true;
-    }
-  }, []);
+  //     dispatch(
+  //       setFilters({
+  //         ...params,
+  //         sort: sort || sortList[0],
+  //       }),
+  //     );
+  //     isSearch.current = true;
+  //   }
+  // }, []);
 
   //Если был первый рендер, дернуть завпрос
   React.useEffect(() => {

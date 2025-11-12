@@ -1,19 +1,26 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSort, sortSelector } from '../redux/slices/filterSlice';
-
-type SortListItem = {
-  name: string;
-  sortProperty: string;
-};
+import {
+  setSort,
+  SortListItem,
+  SortPropertyNameTypeEnum,
+  SortPropertyTypeEnum,
+  sortSelector,
+} from '../redux/slices/filterSlice';
 
 export const sortList: SortListItem[] = [
-  { name: 'популярности ASC', sortProperty: 'rating' },
-  { name: 'популярности DESK', sortProperty: '-rating' },
-  { name: 'цене DESK', sortProperty: 'price' },
-  { name: 'цене ASC', sortProperty: '-price' },
-  { name: 'алфавиту DESK', sortProperty: 'alphabetically' },
-  { name: 'алфавиту ASC', sortProperty: '-alphabetically' },
+  { name: SortPropertyNameTypeEnum.RATING_ASC, sortProperty: SortPropertyTypeEnum.PRICE_ASC },
+  { name: SortPropertyNameTypeEnum.RATING_DESK, sortProperty: SortPropertyTypeEnum.PRICE_DESK },
+  { name: SortPropertyNameTypeEnum.PRICE_ASC, sortProperty: SortPropertyTypeEnum.PRICE_DESK },
+  { name: SortPropertyNameTypeEnum.PRICE_DESK, sortProperty: SortPropertyTypeEnum.PRICE_ASC },
+  {
+    name: SortPropertyNameTypeEnum.ALPHABETICALLY_ASC,
+    sortProperty: SortPropertyTypeEnum.ALPHABETICALLY_DESK,
+  },
+  {
+    name: SortPropertyNameTypeEnum.ALPHABETICALLY_DESK,
+    sortProperty: SortPropertyTypeEnum.ALPHABETICALLY_ASC,
+  },
 ];
 
 const Sort = () => {
