@@ -8,8 +8,18 @@ import { cartSelector } from '../redux/slices/cartSlice';
 const Header = () => {
   const { totalPrice, items } = useSelector(cartSelector);
   const location = useLocation();
+  const isMounted = React.useRef(false);
 
   const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(items);
+      console.log(json);
+      localStorage.setItem('cart', json);
+    }
+    isMounted.current = true;
+  }, [items]);
 
   return (
     <div className="header">
