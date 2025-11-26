@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CartItemBlock from '../components/CartItem';
-import { cartSelector, clearItems } from '../redux/slices/cartSlice';
+import { cartSelector } from '../redux/slices/cart/selectors';
+import { clearItems } from '../redux/slices/cart/slice';
 import EmptyCart from '../components/EmptyCart';
 
 type ItemProps = {
