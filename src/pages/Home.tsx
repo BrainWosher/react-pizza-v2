@@ -14,7 +14,8 @@ import Pagination from '../components/Pagination';
 //   setCurrentPage,
 //   setFilters,
 // } from '../redux/slices/filterSlice';
-import { fetchPizzas, pizzaSelector } from '../redux/slices/pizzaSlice';
+import { fetchPizzas } from '../redux/slices/pizza/slice';
+import { pizzaSelector } from '../redux/slices/pizza/selectors';
 import { useAppDispatch } from '../redux/store';
 import { setCategoryId, setCurrentPage } from '../redux/slices/filter/slice';
 import { filterSelector } from '../redux/slices/filter/selectors';
