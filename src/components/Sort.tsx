@@ -4,8 +4,8 @@ import {
   SortListItem,
   SortPropertyNameTypeEnum,
   SortPropertyTypeEnum,
-} from '../redux/slices/filter/types';
-import { setSort } from '../redux/slices/filter/slice';
+} from '../redux/filter/types';
+import { setSort } from '../redux/filter/slice';
 
 type SortProps = {
   value: SortListItem;
